@@ -1,7 +1,20 @@
+using ApplicationCore.Contracts.Services;
+using ApplicationCore.Models;
+using Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// injecing at run time
+builder.Services.AddScoped<IMovieService, MovieServiceMock >();
+
+// scopes in DI
+// AddScoped -> Http Request, its gonna create the insatcne, resuse the insatcne witin the http request, when a new Http request, new insatce
+// AddTransient -> it will create new insatce each and evry time
+// AddSingleton -> its gonna create insatcne when the first requst comes in and it will reuse until application shuts down -> one insatce
 
 var app = builder.Build();
 
