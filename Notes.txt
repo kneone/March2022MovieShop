@@ -32,7 +32,12 @@ EF Core -> Code First Approach to crtete the DB
 1. Nuget and download the packages
 2. Keep Connection sting for EF -> Server name, database name
 3. Create a class that represent the table
-4. 
+4. Create a new DbContext class
+5. establish ConnectionString with DbContext by injecting from appsettings.json
+6. Create new DbSet property for the entity
+7. Migrations in side Tools-> Nuget Package Manger Console, always run migrations against project that has DbContext location
+8. Always make sure ur migration files have meaningful names
+9. Data Annotations (Attributes []) or Fluent API
 
 If you are using non-windows machine, like mac or linux or if you are not using Visual Studio Rider
 
