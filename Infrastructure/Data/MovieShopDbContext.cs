@@ -21,14 +21,22 @@ namespace Infrastructure.Data
         // DbSet as properties of DbContext
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Trailer> Trailers { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // can use Fluent API to have schema rules
             modelBuilder.Entity<Movie>(ConfigureMovie);
-            
+            modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
             // Trailer
             // 
+        }
+
+        private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
+        {
+            builder.ToTable("MovieGenre");
+            builder.HasKey(mg => new { mg.MovieId, mg.GenreId });
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
