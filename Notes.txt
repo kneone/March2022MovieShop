@@ -31,6 +31,8 @@ EF Core -> Code First Approach to crtete the DB
 
 1. Nuget and download the packages
 2. Keep Connection sting for EF -> Server name, database name
+3. Create a class that represent the table
+4. 
 
 If you are using non-windows machine, like mac or linux or if you are not using Visual Studio Rider
 
