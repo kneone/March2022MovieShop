@@ -1,6 +1,8 @@
+using ApplicationCore.Contracts.Repositories;
 using ApplicationCore.Contracts.Services;
 using ApplicationCore.Models;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // injecing at run time
-builder.Services.AddScoped<IMovieService, MovieServiceMock >();
+builder.Services.AddScoped<IMovieService, MovieService >();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
 // scopes in DI
 // AddScoped -> Http Request, its gonna create the insatcne, resuse the insatcne witin the http request, when a new Http request, new insatce

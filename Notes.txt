@@ -41,4 +41,4 @@ EF Core -> Code First Approach to crtete the DB
 
 If you are using non-windows machine, like mac or linux or if you are not using Visual Studio Rider
 
-
+WE RESUSE the View in multiple places => Partial View

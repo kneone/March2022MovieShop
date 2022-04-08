@@ -42,10 +42,6 @@ namespace MovieShopMVC.Controllers
            // INjection is built in .NET Core
            // older .net framework -> rher eis no built  in DI
             var movies = _movieService.Get30HighestGrossingMovies();
-            // testable, maintanavble, 
-
-            // 
-
             return View(movies);
         }
 

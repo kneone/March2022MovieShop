@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Contracts.Services;
+﻿using ApplicationCore.Contracts.Repositories;
+using ApplicationCore.Contracts.Services;
 using ApplicationCore.Models;
 using System;
 using System.Collections.Generic;
@@ -9,19 +10,26 @@ using System.Threading.Tasks;
 namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
-    {       
+    {
+        private readonly IMovieRepository _movieRepository;
+
+        public MovieService(IMovieRepository movieRepository)
+        {
+            _movieRepository = movieRepository;
+        }
+
+        // DI IMovieRepository
+        // Models are nothing but dumb classes that transfer data, ViewModels, Models, DTO (Data Transfer Objects)
         public List<MovieCard> Get30HighestGrossingMovies()
         {
-            var movies = new List<MovieCard>() 
+            var movies = _movieRepository.Get30HighestGrossingMovies();
+            // AutoMapper - Nuget
+            var movieCards = new List<MovieCard>();
+            foreach (var movie in movies)
             {
-                new MovieCard{ Id=1, PosterUrl="", Title="Inception" },
-                new MovieCard{ Id=2, PosterUrl="", Title="" },
-                new MovieCard{ Id=3, PosterUrl="", Title="" },
-                new MovieCard{ Id=4, PosterUrl="", Title="" },
-                new MovieCard{ Id=5, PosterUrl="", Title="" },
-            };
-
-            return movies;
+                movieCards.Add(new MovieCard { Id = movie.Id, PosterUrl = movie.PosterUrl, Title=movie.Title });
+            }
+            return movieCards;
         }
 
 
