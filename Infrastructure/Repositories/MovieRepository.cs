@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -29,6 +30,15 @@ namespace Infrastructure.Repositories
         public IEnumerable<Movie> Get30HighestRatedMovies()
         {
             throw new NotImplementedException();
+        }
+
+        public override Movie GetById(int id)
+        {
+            // Include method to include the navigation properties
+            // Add Cast and MovieCast to the includes to get cast information
+            var movie = _dbContext.Movies.Include(m=> m.GenresOfMovie).ThenInclude(m=> m.Genre).Include(m=> m.Trailers)
+                    .FirstOrDefault(m=> m.Id == id);
+            return movie;
         }
 
     }
