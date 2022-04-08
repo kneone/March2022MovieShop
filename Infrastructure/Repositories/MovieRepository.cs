@@ -38,6 +38,8 @@ namespace Infrastructure.Repositories
             // Add Cast and MovieCast to the includes to get cast information
             var movie = _dbContext.Movies.Include(m=> m.GenresOfMovie).ThenInclude(m=> m.Genre).Include(m=> m.Trailers)
                     .FirstOrDefault(m=> m.Id == id);
+            // use review dbset (table) to get average rating of the movie and assign it to movie.Rating
+            
             return movie;
         }
 
