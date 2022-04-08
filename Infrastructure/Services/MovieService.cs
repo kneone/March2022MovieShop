@@ -32,6 +32,29 @@ namespace Infrastructure.Services
             return movieCards;
         }
 
+        public MovieDetailsModel GetMovieDetails(int id)
+        {
+            var movie = _movieRepository.GetById(id);
+            var movieDetails = new MovieDetailsModel
+            {
+                Title = movie.Title,
+                Id = movie.Id,
+                PosterUrl = movie.PosterUrl,
+                Budget = movie.Budget,
+                Revenue = movie.Revenue,
+                ReleaseDate = movie.ReleaseDate,
+                // todo add all the properties
+            };
+            movieDetails.Trailers = new List<TrailerModel>();
+            foreach (var trailer in movie.Trailers)
+            {
+                movieDetails.Trailers.Add(new TrailerModel { Id = trailer.Id, Name = trailer.Name, TrailerUrl = trailer.TrailerUrl });
+            }
 
+            // todo loop through genres and add genres model
+            // todo loop through cast and add to casts model
+            return movieDetails;
+
+        }
     }
 }

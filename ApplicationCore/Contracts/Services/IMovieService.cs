@@ -12,6 +12,6 @@ namespace ApplicationCore.Contracts.Services
         // business logic method that can be used to show movies on the home page
        List<MovieCard> Get30HighestGrossingMovies();
 
-        GetMovieDetails(int id);
+       MovieDetailsModel GetMovieDetails(int id);
     }
 }
