@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
+using ApplicationCore.Entities;
 
 namespace Infrastructure.Services
 {
@@ -35,9 +36,24 @@ namespace Infrastructure.Services
             // never ever create your own hashing algoritm
             // always use inditsry tried and tested algoritmns
 
+            var salt = GetRandomSalt();
+            var hashedPassword = GetHashedPassword(model.Password, salt);
 
+            // save the salt and email, fname, lastname User Table
 
-            throw new NotImplementedException();
+            // create user entity
+            var newUser = new User { 
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Salt = salt,
+                DateOfBirth = model.DateOfBirth,
+                HashedPassword = hashedPassword
+            };
+
+            await _userRepository.Add(newUser);
+            // return newly created Usr Id
+            return true;
         }
 
         public Task<bool> ValidateUser(string email, string password)
