@@ -1,11 +1,18 @@
-﻿using ApplicationCore.Models;
+﻿using ApplicationCore.Contracts.Services;
+using ApplicationCore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MovieShopMVC.Controllers
 {
     public class AccountController : Controller
     {
-        
+        private readonly IAccountService _accountService;
+
+        public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         [HttpGet]
         public async Task<IActionResult> Login()
         {
@@ -30,12 +37,9 @@ namespace MovieShopMVC.Controllers
         {
             // call the account service, user repository -> User Table
 
-            // never save the password as plain text
-
-            // 
-
-
-            return View();
+            var user = await _accountService.RegisterUser(model);
+            return RedirectToAction("Login");
+        
         }
     }
 }

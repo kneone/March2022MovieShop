@@ -20,9 +20,9 @@ namespace Infrastructure.Services
 
         // DI IMovieRepository
         // Models are nothing but dumb classes that transfer data, ViewModels, Models, DTO (Data Transfer Objects)
-        public List<MovieCard> Get30HighestGrossingMovies()
+        public async Task< List<MovieCard> >Get30HighestGrossingMovies()
         {
-            var movies = _movieRepository.Get30HighestGrossingMovies();
+            var movies = await _movieRepository.Get30HighestGrossingMovies();
             // AutoMapper - Nuget
             var movieCards = new List<MovieCard>();
             foreach (var movie in movies)
@@ -32,9 +32,9 @@ namespace Infrastructure.Services
             return movieCards;
         }
 
-        public MovieDetailsModel GetMovieDetails(int id)
+        public async Task< MovieDetailsModel> GetMovieDetails(int id)
         {
-            var movie = _movieRepository.GetById(id);
+            var movie = await _movieRepository.GetById(id);
             var movieDetails = new MovieDetailsModel
             {
                 Title = movie.Title,
