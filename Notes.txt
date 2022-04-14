@@ -42,3 +42,29 @@ EF Core -> Code First Approach to crtete the DB
 If you are using non-windows machine, like mac or linux or if you are not using Visual Studio Rider
 
 WE RESUSE the View in multiple places => Partial View
+
+un/pw -> 
+Proper access to certain 
+
+public pages -> Home, Movie Details, Cast Details, Login, register
+Authenticated -> Movies Purchased, Favorites, BUY, Favorite
+Authrorization as Admin - Role -> Create Movie, Create Cast 
+
+Register -> GET http:movieshop.com/account/register registwr view empty
+	submit -> POST un/pw, fname, lastname, dof
+Login -> GET http:movieshop.com/account/login
+		POST -> recieve the data from View
+
+Model Binding in ASP.NET
+
+Encryption -> We can decrypt back to original string
+
+Register -> HASH -> ONE WAY with SALT *** no two hashes are same
+U1 -> abc@abc.com  (Abc123!! + kghfkdslhgfdskhn) -> Hashing Alg1 -> gdgdfgdfgfdhfghgfhgfhgf
+U2 -> xyz@abc.com  (Abc123!! + alkdfhalkdjnklas) -> Hashing Alg1 -> vxfvgfdsgdgfdgfdgfdgfd
+
+Login ->
+U1 -> abc@abc.com  (Abc123!! + kghfkdslhgfdskhn) -> Hashing Alg1 ->
+ Compare database hash with ghe one generated heres
+and if they are equal , correct password 
+
