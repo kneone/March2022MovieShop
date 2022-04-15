@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MovieShopMVC.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         //show all the movies purchased by currently loged in user
-       
+
         [HttpGet]
         public async Task<IActionResult> Purchases()
         {
@@ -21,7 +23,17 @@ namespace MovieShopMVC.Controllers
             // Http Request is independect of each other
             // userid, fo to purchase table and get all the movies purchased
             // display as movie cards, use movie card partial view
-            // 
+            // var data = this.HttpContext.Request.Cookies["MovieShopAuthCookie"];
+            //var isLogedIn = this.HttpContext.User.Identity.IsAuthenticated;
+            //if (!isLogedIn)
+            //{
+            //    //redirect to login page
+            //}
+            // Filters in ASP.NET
+           
+            // send it to database
+            // dectypt the cookie and get the userid from claims and expiration time from the cookie
+            // use the useid to go to database and get the movies purchased
             return View();
         }
 

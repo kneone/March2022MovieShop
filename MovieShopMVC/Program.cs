@@ -48,11 +48,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Middleware in ASP.NET Core
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+// Auth process
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
