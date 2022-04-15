@@ -23,6 +23,12 @@ namespace MovieShopMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
+            var isLogedIn = await _accountService.ValidateUser(model.Email, model.Password);
+            // create a cookie, userid, email, -> encrypted, expiration time 
+            // each and every time you make an http request the cookies are sent to server in http
+            // 10:00 authCookie
+            // 30 minutes
+            // cookie based authetication
             return View();
         }
 
