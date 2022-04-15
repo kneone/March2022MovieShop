@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MovieShopMVC.Controllers
 {
@@ -30,7 +31,8 @@ namespace MovieShopMVC.Controllers
             //    //redirect to login page
             //}
             // Filters in ASP.NET
-           
+            var userId = Convert.ToInt32( this.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //  call the USerService -> GetMoviesPurchasedByUser(int userId) -> List<MovieCard>
             // send it to database
             // dectypt the cookie and get the userid from claims and expiration time from the cookie
             // use the useid to go to database and get the movies purchased
@@ -41,6 +43,14 @@ namespace MovieShopMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
+            var userId = Convert.ToInt32(this.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return View();
+        }
+
+        public async Task<IActionResult> Reviews()
+        {
+            var userId = Convert.ToInt32(this.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
             return View();
         }
     }
