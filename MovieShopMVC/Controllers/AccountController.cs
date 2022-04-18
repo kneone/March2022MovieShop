@@ -69,7 +69,11 @@ namespace MovieShopMVC.Controllers
         public async Task<IActionResult> Register(RegisterModel model)
         {
             // call the account service, user repository -> User Table
-
+            // check if the model is valid
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var user = await _accountService.RegisterUser(model);
             return RedirectToAction("Login");
         
